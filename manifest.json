@@ -1,0 +1,10 @@
+{
+  "name": "Fact or Cap",
+  "description": "Check if a something is real or bullshit",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "logo.png"
+  }
+}
