@@ -1,0 +1,18 @@
+<html>
+
+<head>
+</head>
+
+<body>
+  <h1>This is a demo on how to get information on text highlight</h1>
+  <script>
+    document.addEventListener("mouseup", () => {
+      let selectedText = window.getSelection().toString();
+      if (selectedText) {
+        console.log("Selected text:", selectedText);
+      }
+    });
+  </script>
+</body>
+
+</html>
