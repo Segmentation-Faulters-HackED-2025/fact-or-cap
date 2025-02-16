@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Highlighted Text</title>
-  <script src="popup.js" defer></script>
-</head>
-<body>
-  <h2>Fact or Cyap</h2>
-  <!-- a place for the text to go -->
-  <textarea id="highlightbox" rows="5" cols="30" readonly></textarea> 
-</body>
-</html>
+<html>
 
+<head>
+  <title>Fact Check</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div id="loading">
+      <div class="spinner"></div>
+      <div>Analyzing...</div>
+    </div>
+    <h1>Your Statement Is...</h1>
+    <div id="content" class="claim"></div>
+    <div id="results"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>

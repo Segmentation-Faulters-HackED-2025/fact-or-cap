@@ -1,21 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "Right-Click Text Selector",
+  "name": "Fact or Cap",
   "version": "1.0",
-  "description": "An extension that allows you to right-click and select text.",
+  "description": "verify the validity of a statement",
   "permissions": [
     "contextMenus",
+    "storage",
     "activeTab",
-    "scripting",
-    "storage"
+    "scripting"
   ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
   "background": {
     "service_worker": "background.js"
-  },
-  "action": {
-    "default_popup": "popup.html"
-    
   }
 }
-
-

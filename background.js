@@ -1,40 +1,35 @@
+// background.js - responsible for the BTS work of the extention
+// written by "The Segfaulters (Saaim Japanwala, Kavin Kumaranvasan, Nabeel Khan)"
+// 19-02-2025
+
+
 chrome.runtime.onInstalled.addListener(() => {
-    // Creates a custom right click menu
-    chrome.contextMenus.create({
-      id: "selectText", // identify
-      title: "Fact or Cap", // text in the menu
-      contexts: ["selection"] // will only appear when user selects text
-    });
+  chrome.contextMenus.create({
+    // this event creates the right click menu where we can choose to fact check data - SJ
+    // selection is the array of data we have highlighted -SJ
+    id: "factCheck",
+    title: "Is This Fact or Cap?",
+    contexts: ["selection"]
   });
-  
-  chrome.contextMenus.onClicked.addListener((info, tab) => {
-    if (info.menuItemId === "selectText") {
-        chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            function: getSelectedText
-        });
-    }
 });
-    // listens to when custom button is clicked
-//     if (info.menuItemId === "selectText") { // contains details about the clicked menu item
-//       chrome.scripting.executeScript({ // injects and executes funcion into tab
-//         target: { tabId: tab.id }, // runs script in tap
-//         function: updateHighlightBox //getSelectedText // call da func
-//       });
-//     }
-// });
-  
-    // Function to get selected text and store it in chrome.storage
-    function getSelectedText() {
-        const selectedText = window.getSelection().toString();
-        if (selectedText) {
-            chrome.storage.local.set({ highlightedText: selectedText });
-        }
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === "factCheck") {
+    if (info.selectionText) {
+      // If text is selected, store it as usual and open the popup
+      chrome.storage.local.set({ selectedText: info.selectionText }, () => {
+        chrome.action.openPopup();
+      });
+    } else {
+      // If no text is selected, open the popup with an empty input box
+      chrome.storage.local.set({ selectedText: '' }, () => {
+        chrome.action.openPopup();
+      });
     }
-//   function getSelectedText() {
-//     // gets the text the user has selected
-//     const selectedText = window.getSelection().toString(); // makes the text a STRING
-//     if (selectedText) {
-//       alert(`You selected: ${selectedText}`); // CHANGE TO SHOW RESULT OF THE FACT CHECK
-//     }
-//   }
+  }
+});
+
+chrome.action.onClicked.addListener((tab) => {
+  // this is when the pop up is manually opened, for the edge cases - SJ
+  chrome.action.openPopup();
+});
