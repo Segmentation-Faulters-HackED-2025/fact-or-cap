@@ -1,10 +1,19 @@
 {
-  "name": "Fact or Cap",
-  "description": "Check if a something is real or bullshit",
-  "version": "1.0",
   "manifest_version": 3,
+  "name": "Right-Click Text Selector",
+  "version": "1.0",
+  "description": "An extension that allows you to right-click and select text.",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
-    "default_popup": "index.html",
-    "default_icon": "logo.png"
+    "default_popup": "popup.html"
   }
 }
+
+
