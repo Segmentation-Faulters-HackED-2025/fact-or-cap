@@ -1,7 +1,7 @@
 # Welcome to Fact or Cap!
 > Whats real? and whats bullshit?
 
-### A HackED Hackathon Project Created by *Saaim Japanwala, Kavin Kumaranvasan, Nabeel Khan*
+### A HackED Hackathon Project Created by *Saaim Japanwala, Kavin Kumaran, Nabeel Khan*
 
 ## How Does It Work?
 
