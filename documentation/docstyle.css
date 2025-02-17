@@ -1,0 +1,27 @@
+body {
+    background: rgb(255, 255, 255);
+    font-family: 'poppins', sans-serif;
+}
+
+img {
+    size-adjust: 10%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;  /* Set the width */
+    height: 150px; /* Set the height */
+  }
+
+h1 {
+    text-align: center;
+    margin: 50px;
+
+}
+
+.intro {
+    padding: 30px;
+}
+
+.install {
+    background-color: gray;
+} 
