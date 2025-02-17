@@ -58,6 +58,11 @@
    color: #e65100;
  }
 
+ .nostatement {
+   background: linear-gradient(135deg, #A0A0A0 0%, #000 100%);
+   color: #ffff;
+ }
+
  #loading {
    display: flex;
    flex-direction: column;

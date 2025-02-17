@@ -1,7 +1,7 @@
 // popup.js - where the logic is evaluated
 // written by the Segfaulters - Backend - Saaim Japanwala
 
-const API_KEY = '';
+const API_KEY = 'AIzaSyD4_WYs53kQe00H1E3AvfIOYU3cVvj0B6o';
 // please take out the api key when finished with the code - SJ
 
 const truthAllowance = [
@@ -65,6 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const contentDiv = document.getElementById('content');
       contentDiv.textContent = `${result.selectedText}`;
 
+
+      const searchRaw = result.selectedText
       const searchInput = result.selectedText.replace(/ /g, "+"); // since the text may have spaces and queries take " " = + we have to convert it
       const url = `https://factchecktools.googleapis.com/v1alpha1/claims:search?query=${searchInput}&key=${API_KEY}`;
 
@@ -74,8 +76,15 @@ document.addEventListener('DOMContentLoaded', () => {
           document.getElementById('loading').style.display = 'none';
 
           let scores = { true: 0, false: 0, unverified: 0 }; // lets initialize the struct, MAKE SURE EVERYTHING IS ZEROD (unless we rigging results 😏) -SJ
-
-          if (data.claims && data.claims.length > 0) {
+          if (!searchRaw.includes(" ")) {
+            document.getElementById('results').innerHTML = `
+                  <div class="result nostatement">
+                    No Statement Detected 
+                  </div>
+                `;
+            return;
+          }
+          else if (data.claims && data.claims.length > 0) {
             data.claims.forEach(claim => {
               const factCheck = claim.claimReview?.[0]?.textualRating ?? "Unknown"; // this is where the textual rating is evaluted
               scores[analyzeClaim(factCheck)]++;
