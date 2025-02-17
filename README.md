@@ -11,6 +11,8 @@
 
 ## 🚪 Introduction
 
+Have you ever been reading an article about cats, just minding your own business, when suddenly you come across a bold, shocking claim like, “Cats can communicate telepathically with aliens”?
+
 Now you’re at a crossroads. Should you continue reading and let this bizarre claim sit in your brain like a cat fur ball, or should you take action? 🤔
 
 Luckily, there’s a superhero tool for moments like these—*Fact or Cap, THe Truth Checking Extention!*
