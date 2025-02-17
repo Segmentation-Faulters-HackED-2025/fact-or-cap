@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Fact or Cap",
   "version": "1.0",
-  "description": "verify the validity of a statement",
+  "description": "Welcome to Fact or Cap, A Chrome extension that allows users to highlight any sentence on the internet, right-click, and fact-check the selected text instantly using verified sources. A student led hackathon project for HackED 2025, Created by the segfaulters.",
   "permissions": [
     "contextMenus",
     "storage",
