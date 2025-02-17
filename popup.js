@@ -1,7 +1,7 @@
 // popup.js - where the logic is evaluated
 // written by the Segfaulters - Backend - Saaim Japanwala
 
-const API_KEY = '';
+const API_KEY = 'AIzaSyD4_WYs53kQe00H1E3AvfIOYU3cVvj0B6o';
 // please take out the api key when finished with the code - SJ
 // Took it out saaim! - Future SaaimJ
 

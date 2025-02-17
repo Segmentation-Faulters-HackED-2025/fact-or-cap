@@ -9,6 +9,9 @@
 
 > A HackED Hackathon Project Created by *Saaim Japanwala, Kavin Kumaran, Nabeel Khan*
 
+
+[Checkout Our Devpost Here!](https://devpost.com/software/fact-or-cap-the-truth-checking-chrome-extention#updates)
+
 ## 🚪 Introduction
 
 Have you ever been reading an article about cats, just minding your own business, when suddenly you come across a bold, shocking claim like, “Cats can communicate telepathically with aliens”?
