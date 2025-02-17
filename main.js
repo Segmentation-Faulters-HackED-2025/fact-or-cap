@@ -13,7 +13,9 @@ const falseAllowance = [
   "exaggerated", "distorted", "flawed", "unfounded", "unreliable", "inaccurate", "no evidence"
 ];
 
-const url = `https://factchecktools.googleapis.com/v1alpha1/claims:search?query=the+earth+is+round&key=${process.env.API_KEY}`;
+const input = process.argv[2]
+
+const url = `https://factchecktools.googleapis.com/v1alpha1/claims:search?query=${input}&key=${process.env.API_KEY}`;
 
 const analyzeClaim = (claim) => {
   const claimLower = claim.toLowerCase().trim();
@@ -59,16 +61,28 @@ exec(`curl -s "${url}"`, (error, stdout) => {
       false: 0,
       unverified: 0
     };
-
+    let claimNum = 0;
     jsonResponse.claims.forEach(claim => {
+      console.log(` ---------------- CLAIM #${claimNum} ---------------- `);
       const factCheck = claim.claimReview?.[0]?.textualRating ?? "Unknown";
       claims.push(factCheck);
       const claimTitle = claim.claimReview?.[0]?.title ?? "Unknown";
-      console.log(`Title: ${claimTitle}, Claim Review: ${factCheck}`);
-
+      // console.log(`Title: ${claimTitle}, Claim Review: ${factCheck}`);
+      console.log(`Claim ${claimTitle}\nClaim Fact${factCheck}\n`)
       // Analyze each claim and increment appropriate score
       const result = analyzeClaim(factCheck);
-      scores[result]++;
+      let resultArr = claimTitle.split(" ");
+      let inputArr = input.split("+");
+      if (inputArr.some(item => resultArr.includes(item))) {
+
+        console.log(true);
+        scores[result]++;
+        console.log("\x1b[32mAccepted\x1b[0m");
+      } else {
+        console.log("\x1b[31mDenied\x1b[0m");
+      }
+      console.log(`\n\n${scores}`)
+      claimNum += 1
     });
 
     //console.log('\nScoring Results:');
@@ -83,15 +97,14 @@ exec(`curl -s "${url}"`, (error, stdout) => {
     // For debugging specific claims
     console.log('\nDetailed Analysis:');
     claims.forEach(claim => {
-      console.log(`Claim: "${claim}" -> Scored as: ${analyzeClaim(claim)}`);
+      // console.log(`Claim: "${claim}" -> Scored as: ${analyzeClaim(claim)}`);
     });
 
   } catch (e) {
     console.error("Invalid JSON response", e);
   }
+
 });
 
-function get_verdict(truthScore, totalScore) {
-  percentScore = (truthScore * 100) / totalScore
-  console.log(percentScore)
-}
+
+
