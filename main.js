@@ -13,7 +13,7 @@ const falseAllowance = [
   "exaggerated", "distorted", "flawed", "unfounded", "unreliable", "inaccurate", "no evidence"
 ];
 
-const url = `https://factchecktools.googleapis.com/v1alpha1/claims:search?query=vaccines+cause+disabilities&key=${process.env.API_KEY}`;
+const url = `https://factchecktools.googleapis.com/v1alpha1/claims:search?query=the+earth+is+round&key=${process.env.API_KEY}`;
 
 const analyzeClaim = (claim) => {
   const claimLower = claim.toLowerCase().trim();
