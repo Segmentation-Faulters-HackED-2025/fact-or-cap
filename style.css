@@ -1,3 +1,4 @@
+ /* this is for the body, creating a gradient style background*/
  body {
    width: 350px;
    min-height: 200px;
@@ -11,7 +12,7 @@
    justify-content: center;
  }
 
-
+ /* container that holds the size and shape of the extention*/
  .container {
    width: 100%;
    max-width: 300px;
@@ -113,9 +114,7 @@
  #doculink {
    position: absolute;
    left: 10px;
-   /* Adjust as needed */
    top: 10px;
-   /* Adjust as needed */
  }
 
  #doculink a {

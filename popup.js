@@ -1,8 +1,9 @@
 // popup.js - where the logic is evaluated
 // written by the Segfaulters - Backend - Saaim Japanwala
 
-const API_KEY = 'AIzaSyD4_WYs53kQe00H1E3AvfIOYU3cVvj0B6o';
+const API_KEY = '';
 // please take out the api key when finished with the code - SJ
+// Took it out saaim! - Future SaaimJ
 
 const truthAllowance = [
   "fact", "verified", "confirmed", "evidence", "accurate", "true", "reliable", "authentic", "actual",
@@ -63,14 +64,13 @@ function getSources(sourceLen) {
   const resultsDiv = document.getElementById('sourceInfo');
   let sourceResponse;
 
-  if (sourceLen >= 1) {
+  if (sourceLen >= 1) { // making sure we got sources
     sourceResponse = `Searched From ${sourceLen} Source(s)`;
     resultsDiv.innerHTML = `
       <div class="sourceInfo" id="sourceResponseDiv">
         ${sourceResponse}
-      </div>
+      </div> 
     `;
-    // Add event listener after creating the element
     const sourceResponseDiv = document.getElementById('sourceResponseDiv');
     sourceResponseDiv.style.cursor = 'pointer';
     sourceResponseDiv.addEventListener('click', toggleSources);
@@ -91,15 +91,21 @@ function saveSources(data) {
 
   if (data.claims) {
     let claimNum = 1;
+    // this is basically for the reciept style information
     data.claims.forEach(claim => {
+      // titles
       const title = claim.text ?? "Unknown";
       const titleElement = document.createElement('h3');
+      // claimants / what the claim was
       const claimant = claim.claimant ?? "Unknown";
       const claimantElement = document.createElement('p');
+      // who checked the fact
       const factChecker = claim.claimReview[0]?.publisher?.name ?? "Unknown";
       const factCheckerElement = document.createElement('p');
-      const factCheckerResponse = claim.claimReview?.[0]?.textualRating ?? "No URL";
+      // what did the fact checker say on this topic?
+      const factCheckerResponse = claim.claimReview?.[0]?.textualRating ?? "Unknown";
       const factCheckerResponseElement = document.createElement('p');
+      // creating a little divider
       const divElement = document.createElement('p')
       titleElement.textContent = title;
       claimantElement.textContent = `Claimed By: ${claimant}`;
@@ -117,6 +123,7 @@ function saveSources(data) {
 }
 
 function toggleSources() {
+  // the toggler that opens and closes the sources
   console.log('toggleSources called');
   const sourceList = document.getElementById('sourceList');
   if (sourceList) {
@@ -185,3 +192,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// eof!
