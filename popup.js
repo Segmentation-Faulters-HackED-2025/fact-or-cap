@@ -1,7 +1,7 @@
 // popup.js - where the logic is evaluated
 // written by the Segfaulters - Backend - Saaim Japanwala
 
-const API_KEY = 'AIzaSyD4_WYs53kQe00H1E3AvfIOYU3cVvj0B6o';
+const API_KEY = '';
 // please take out the api key when finished with the code - SJ
 
 const truthAllowance = [
@@ -58,12 +58,82 @@ function displayVerdict(scores) {
   `;
 }
 
+function getSources(sourceLen) {
+  console.log('getSources called with sourceLen:', sourceLen);
+  const resultsDiv = document.getElementById('sourceInfo');
+  let sourceResponse;
+
+  if (sourceLen >= 1) {
+    sourceResponse = `Searched From ${sourceLen} Source(s)`;
+    resultsDiv.innerHTML = `
+      <div class="sourceInfo" id="sourceResponseDiv">
+        ${sourceResponse}
+      </div>
+    `;
+    // Add event listener after creating the element
+    const sourceResponseDiv = document.getElementById('sourceResponseDiv');
+    sourceResponseDiv.style.cursor = 'pointer';
+    sourceResponseDiv.addEventListener('click', toggleSources);
+  } else {
+    sourceResponse = "Did not find any sources regarding the claim";
+    resultsDiv.innerHTML = `
+      <div class="sourceInfo">
+        ${sourceResponse}
+      </div>
+    `;
+  }
+}
+
+function saveSources(data) {
+  console.log('saveSources called with data:', data);
+  const resultsDiv = document.getElementById('sourceList');
+  resultsDiv.innerHTML = '';
+
+  if (data.claims) {
+    let claimNum = 1;
+    data.claims.forEach(claim => {
+      const title = claim.text ?? "Unknown";
+      const titleElement = document.createElement('h3');
+      const claimant = claim.claimant ?? "Unknown";
+      const claimantElement = document.createElement('p');
+      const factChecker = claim.claimReview[0]?.publisher?.name ?? "Unknown";
+      const factCheckerElement = document.createElement('p');
+      const factCheckerResponse = claim.claimReview?.[0]?.textualRating ?? "No URL";
+      const factCheckerResponseElement = document.createElement('p');
+      const divElement = document.createElement('p')
+      titleElement.textContent = title;
+      claimantElement.textContent = `Claimed By: ${claimant}`;
+      factCheckerElement.textContent = `Fact Checked By: ${factChecker}`;
+      factCheckerResponseElement.textContent = `Response To Claim: "${factCheckerResponse}"`;
+      divElement.textContent = `------------ Claim Number ${claimNum} ------------`;
+      resultsDiv.appendChild(divElement);
+      resultsDiv.appendChild(titleElement);
+      resultsDiv.appendChild(claimantElement);
+      resultsDiv.appendChild(factCheckerElement);
+      resultsDiv.appendChild(factCheckerResponseElement);
+      claimNum += 1
+    });
+  }
+}
+
+function toggleSources() {
+  console.log('toggleSources called');
+  const sourceList = document.getElementById('sourceList');
+  if (sourceList) {
+    console.log('Current display:', sourceList.style.display);
+    sourceList.style.display = sourceList.style.display === 'none' ? 'block' : 'none';
+    console.log('New display:', sourceList.style.display);
+  } else {
+    console.log('sourceList element not found');
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // the "main" function
   chrome.storage.local.get(['selectedText'], function(result) { // getting the extracted text from "background.js" and analyzing it here
     if (result.selectedText) {
       const contentDiv = document.getElementById('content');
-      contentDiv.textContent = `${result.selectedText}`;
+      contentDiv.textContent = `${result.selectedText} `;
 
 
       const searchRaw = result.selectedText
@@ -89,12 +159,17 @@ document.addEventListener('DOMContentLoaded', () => {
               const factCheck = claim.claimReview?.[0]?.textualRating ?? "Unknown"; // this is where the textual rating is evaluted
               scores[analyzeClaim(factCheck)]++;
             });
+            sourceLength = data.claims.length
+            console.log(`Calling This ${url}`)
+            console.log(sourceLength)
             displayVerdict(scores); // displaying the verdict
+            getSources(sourceLength)
+            saveSources(data)
           } else {
             // edge case where no data is found 😔
             document.getElementById('results').innerHTML = `
               <div class="result unverified">
-                No Fact Checks Found<br>Proceed With Careful Judgement 
+                No Credible Fact Checks Found<br>Proceed With Careful Judgement!
               </div>
             `;
           }

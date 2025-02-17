@@ -16,7 +16,7 @@ const falseAllowance = [
 const input = process.argv[2]
 
 const url = `https://factchecktools.googleapis.com/v1alpha1/claims:search?query=${input}&key=${process.env.API_KEY}`;
-
+console.log(url)
 const analyzeClaim = (claim) => {
   const claimLower = claim.toLowerCase().trim();
 

@@ -8,13 +8,25 @@
 
 <body>
   <div class="container">
-    <div id="loading">
-      <div class="spinner"></div>
-      <div>Analyzing...</div>
-    </div>
-    <h1>Fact or Cap</h1>
+    <h1 class="title">Fact or Cap</h1>
+    <h4>Figure out if a statement is <span style="color: green;">True</span> or <span style="color: red;">False</span>
+    </h4>
     <div id="content" class="claim"></div>
-    <div id="results"></div>
+    <div id="loading">
+      <h3>Figuring out the validity of the claim...</h3>
+      <div class="spinner"></div>
+    </div>
+  </div>
+  <div id="results">
+  </div>
+  <div id="sourceInfo">
+  </div>
+  <div id="sourceList" style="display: none;"></div>
+  <div id="doculink">
+    <a href="https://github.com/Segmentation-Faulters-HackED-2025" target="_blank" rel="noopener noreferrer"
+      title="Click Me Read Some Documentation">
+      ?
+    </a>
   </div>
   <script src="popup.js"></script>
 </body>
