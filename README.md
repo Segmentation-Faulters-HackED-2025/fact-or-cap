@@ -5,5 +5,4 @@
 
 ## How Does It Work?
 
-utilizing Googles Fact Checking API, created a fact checking chrome extention!
-
+Utilizing the Google Fact Checking API, the Fact or Cap Chrome extension serves to accurately verify any highlighted piece of information found online. It's ease of use renders it a useful companion whilst browsing the internet, as simply highlighting a chosen text prompts open the Fact or Cap Chrome extension!
