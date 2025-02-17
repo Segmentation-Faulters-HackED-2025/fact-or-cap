@@ -4,12 +4,13 @@
    margin: 0;
    padding: 20px;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   background: #f8f9fa;
+   background: linear-gradient(180deg, #6495ED, #ffff);
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
  }
+
 
  .container {
    width: 100%;
